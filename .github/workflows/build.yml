@@ -8,10 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./spotifusion-1.0.0
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -22,14 +18,22 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build APK (Debug)
-      run: ./gradlew assembleDebug
+    - name: Find, Grant permission and Build APK
+      run: |
+        echo "Cerco il file gradlew nel repository..."
+        GRADLEW_PATH=$(find . -name "gradlew" -print -quit)
+        if [ -z "$GRADLEW_PATH" ]; then
+          echo "Errore: gradlew non trovato!"
+          exit 1
+        fi
+        echo "Trovato in: $GRADLEW_PATH"
+        DIR=$(dirname "$GRADLEW_PATH")
+        cd "$DIR"
+        chmod +x gradlew
+        ./gradlew assembleDebug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
         name: app-debug-apk
-        path: spotifusion-1.0.0/app/build/outputs/apk/debug/app-debug.apk
+        path: '**/build/outputs/apk/debug/*.apk'
