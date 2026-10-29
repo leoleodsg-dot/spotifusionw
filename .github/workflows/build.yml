@@ -6,8 +6,11 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./spotifusion-1.0.0
 
     steps:
     - name: Checkout code
@@ -29,4 +32,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: app-debug-apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: spotifusion-1.0.0/app/build/outputs/apk/debug/app-debug.apk
