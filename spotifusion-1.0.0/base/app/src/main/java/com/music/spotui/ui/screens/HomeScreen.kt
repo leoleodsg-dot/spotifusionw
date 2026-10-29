@@ -136,7 +136,7 @@ fun HomeScreen(navController: NavController){
                         )
                         context.startActivity(intent)
                     } else {
-                        val intent = android.content.Intent(context, com.music.spotui.services.FloatingWindowService::class.java)
+                        val intent = android.content.Intent(context, Class.forName("com.music.spotui.services.FloatingWindowService"))
 
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                             context.startForegroundService(intent)
