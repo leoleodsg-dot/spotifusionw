@@ -181,7 +181,7 @@ android.compose.material3.FloatingActionButton(
 }
 
 /** Albums and playlists start loading under the finger (see pressHint). */
-private fun prefetchHomeItem(item: HomeItem) {
+fun prefetchHomeItem(item: HomeItem) {
     when (item) {
         is HomeItem.Album -> if (item.id.isNotBlank()) ContextViewModel.prefetch("album", item.id)
         is HomeItem.Playlist -> if (item.id.isNotBlank()) ContextViewModel.prefetch("playlist", item.id)
@@ -189,7 +189,7 @@ private fun prefetchHomeItem(item: HomeItem) {
     }
 }
 
-private fun onHomeItemClick(navController: NavController, item: HomeItem) {
+fun onHomeItemClick(navController: NavController, item: HomeItem) {
     when (item) {
         is HomeItem.Album -> navController.navigate(albumRoute(item.name, item.artists.ifBlank { item.subtitle }, item.id))
         is HomeItem.Artist -> navController.navigate(artistRoute(item.name, item.id))
@@ -277,7 +277,7 @@ fun HomeFeedContent(navController: NavController, feed: HomeFeedModel, facet: St
  */
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-private fun HomeHeaderRow(navController: NavController, facet: String, onFacet: (String) -> Unit) {
+fun HomeHeaderRow(navController: NavController, facet: String, onFacet: (String) -> Unit) {
     val context = androidx.compose.ui.platform.LocalContext.current
     androidx.compose.runtime.LaunchedEffect(Unit) {
         com.music.spotui.data.api.ProfileCache.ensure(context)
@@ -334,7 +334,7 @@ private fun HomeHeaderRow(navController: NavController, facet: String, onFacet: 
 }
 
 @Composable
-private fun HomePill(label: String, selected: Boolean = false, onClick: () -> Unit) {
+fun HomePill(label: String, selected: Boolean = false, onClick: () -> Unit) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -361,7 +361,7 @@ private fun HomePill(label: String, selected: Boolean = false, onClick: () -> Un
  */
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-private fun HomeShortcutGrid(navController: NavController, items: List<HomeItem>) {
+fun HomeShortcutGrid(navController: NavController, items: List<HomeItem>) {
     Column(
         modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 6.dp, bottom = 4.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
