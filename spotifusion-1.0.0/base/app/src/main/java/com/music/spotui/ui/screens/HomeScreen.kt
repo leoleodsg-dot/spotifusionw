@@ -457,6 +457,7 @@ fun HomeFeedCard(item: HomeItem, onClick: () -> Unit) {
         is HomeItem.Artist -> stringResource(R.string.artist_subtitle)
         is HomeItem.Show -> item.subtitle
     }
+    //pene
     val fallbackIcon = if (isArtist) R.drawable.sc_user else R.drawable.sc_disc
     Column(
         horizontalAlignment = if (isArtist) Alignment.CenterHorizontally else Alignment.Start,
