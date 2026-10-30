@@ -416,7 +416,7 @@ private fun HomeShortcutGrid(navController: NavController, items: List<HomeItem>
  * - LazyRow: 16.dp horizontal contentPadding, 16.dp item spacing
  */
 @Composable
-private fun HomeFeedSection(navController: NavController, section: HomeSection) {
+fun HomeFeedSection(navController: NavController, section: HomeSection) {
     Text(
         text = section.title,
         color = Color.White,
@@ -446,9 +446,10 @@ private fun HomeFeedSection(navController: NavController, section: HomeSection) 
  * - Title: 13.5.sp Bold White, 8.dp top spacing, maxLines = 2
  * - Subtitle: 13.sp Regular #A7A7A7, 3.dp top spacing, maxLines = 1
  */
-@OptIn(ExperimentalGlideComposeApi::class)
+@OptIn(ExperimentalGlideComposeApi::class, android.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 fun HomeFeedCard(item: HomeItem, onClick: () -> Unit) {
+
     val isArtist = item is HomeItem.Artist
     val subtitle = when (item) {
         is HomeItem.Album -> item.subtitle
