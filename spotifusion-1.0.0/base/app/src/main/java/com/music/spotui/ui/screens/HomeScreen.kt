@@ -124,35 +124,29 @@ fun HomeScreen(navController: NavController){
             }
             // -------------------------------------------------------------
 
-            // Pulsante fluttuante per attivare la finestra in basso a destra
-            val context = androidx.compose.ui.platform.LocalContext.current
-            
-            androidx.compose.material3.FloatingActionButton(
-                onClick = {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && !android.provider.Settings.canDrawOverlays(context)) {
-                        val intent = android.content.Intent(
-                            android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                            android.net.Uri.parse("package:${context.packageName}")
-                        )
-                        context.startActivity(intent)
-                    } else {
-                        val intent = android.content.Intent(context, Class.forName("com.music.spotui.services.FloatingWindowService"))
+            // Pulsante fluttuante per attivare la finestra in basso
+val context = android.compose.ui.platform.LocalContext.current
 
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                            context.startForegroundService(intent)
-                        } else {
-                            context.startService(intent)
-                        }
-                    }
-                },
-                modifier = Modifier
-                    .align(androidx.compose.ui.Alignment.BottomEnd)
-                    .padding(16.dp)
-            ) {
-                androidx.compose.material3.Text("🪟") // Icona o testo per la finestra fluttuante
+android.compose.material3.FloatingActionButton(
+    onClick = {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && !android.provider.Settings.canDrawOverlays(context)) {
+            val intent = android.content.Intent(
+                android.provider.Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                android.net.Uri.parse("package:${context.packageName}")
+            )
+            context.startActivity(intent)
+        } else {
+            val intent = android.content.Intent(context, Class.forName("com.music.spotui.services.FloatingWindowService"))
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                context.startForegroundService(intent)
+            } else {
+                context.startService(intent)
             }
         }
     }
+) {
+
 
         val feed = (home as? Response.Success)?.data
 
