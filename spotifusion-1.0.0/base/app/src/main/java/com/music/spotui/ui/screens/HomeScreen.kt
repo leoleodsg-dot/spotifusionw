@@ -124,9 +124,9 @@ fun HomeScreen(navController: NavController){
             }
             // -------------------------------------------------------------
 // Pulsante fluttuante per attivare la finestra in basso
-val context = android.compose.ui.platform.LocalContext.current
+val context = androidx.compose.ui.platform.LocalContext.current
 
-android.compose.material3.FloatingActionButton(
+androidx.compose.material3.FloatingActionButton(
     onClick = {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M && !android.provider.Settings.canDrawOverlays(context)) {
             val intent = android.content.Intent(
@@ -613,5 +613,7 @@ fun ProfileSheet(onOpen: (route: String) -> Unit = {}, onDismiss: () -> Unit) {
 }
     }
 }
+
+
 
 
