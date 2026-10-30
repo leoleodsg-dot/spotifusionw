@@ -123,8 +123,7 @@ fun HomeScreen(navController: NavController){
                 }
             }
             // -------------------------------------------------------------
-
-            // Pulsante fluttuante per attivare la finestra in basso
+// Pulsante fluttuante per attivare la finestra in basso
 val context = android.compose.ui.platform.LocalContext.current
 
 android.compose.material3.FloatingActionButton(
@@ -146,7 +145,8 @@ android.compose.material3.FloatingActionButton(
         }
     }
 ) {
-
+    android.compose.material3.Text("🪟")
+}
 
         val feed = (home as? Response.Success)?.data
 
