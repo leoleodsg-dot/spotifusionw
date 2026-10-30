@@ -448,7 +448,7 @@ private fun HomeFeedSection(navController: NavController, section: HomeSection) 
  */
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-private fun HomeFeedCard(item: HomeItem, onClick: () -> Unit) {
+fun HomeFeedCard(item: HomeItem, onClick: () -> Unit) {
     val isArtist = item is HomeItem.Artist
     val subtitle = when (item) {
         is HomeItem.Album -> item.subtitle
@@ -504,7 +504,7 @@ private fun HomeFeedCard(item: HomeItem, onClick: () -> Unit) {
 /** Profile sheet behind the avatar: account name and sign-out (in the Web Player). */
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
 @Composable
-private fun ProfileSheet(onOpen: (route: String) -> Unit = {}, onDismiss: () -> Unit) {
+fun ProfileSheet(onOpen: (route: String) -> Unit = {}, onDismiss: () -> Unit) {
     val name = com.music.spotui.data.api.ProfileCache.name.orEmpty()
     val avatar = com.music.spotui.data.api.ProfileCache.imageUrl
     // Opened in full: half-open, the sheet and its list both moved under the finger.
@@ -607,6 +607,8 @@ private fun ProfileSheet(onOpen: (route: String) -> Unit = {}, onDismiss: () -> 
                     .padding(horizontal = 20.dp, vertical = 14.dp),
             )
         }
+    }
+}
     }
 }
 
